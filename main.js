@@ -19,12 +19,30 @@ const pred = n => fst(n(phi)(pair(zero)(zero)));
 const add = m => n => m(succ)(n);
 const sub = m => n => n(pred)(m);
 const mul = m => n => m(add(n))(zero);
+const exp = m => n => n(mul(m))(one);
 
 // Helper function for implementing predecessor.
 const pair = x => y => f => f(x)(y);
 const fst  = p => p(true_);
 const snd  = p => p(flase_);
 const phi  = p => pair(snd(p))(succ(snd(p)));
+
+
+// Function Composition
+const compose = f => g => x => f(g(x));
+
+// Is Zero
+const iszero = n => n(x => flase_)(true_);
+
+// Omega combinator
+const omega = x => x(x);
+
+// Y combinator
+const Y = f => (x => x(x))(x => f(y => x(x)(y)));
+
+// Factorial
+const facgen = f => n => iszero(n)(() => one)(() => mul(n)(f(pred(n))))();
+const factorial = Y(facgen);
 
 function main(){
     // Core logic
