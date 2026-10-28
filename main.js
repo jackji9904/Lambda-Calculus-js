@@ -62,6 +62,10 @@ const car = p => p(true_);
 const cdr = p => p(flase_);
 const nil = f => x => null;
 
+// Convert to js type
+const jsbool = b => b(true)(false);
+const jsnum = n => n(x => x+1)(0);
+
 function main(){
     // Core logic
     console.log(true_);
