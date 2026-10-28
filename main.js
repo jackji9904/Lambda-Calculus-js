@@ -56,6 +56,12 @@ const divGen = f => m => n =>
 
 const div = Y(divGen);
 
+// Linked lists
+const cons = a => b => f => f(a)(b);
+const car = p => p(true_);
+const cdr = p => p(flase_);
+const nil = f => x => null;
+
 function main(){
     // Core logic
     console.log(true_);
