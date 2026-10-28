@@ -44,6 +44,18 @@ const Y = f => (x => x(x))(x => f(y => x(x)(y)));
 const facgen = f => n => iszero(n)(() => one)(() => mul(n)(f(pred(n))))();
 const factorial = Y(facgen);
 
+
+// Helper function for division
+const lessThan = m => n => not(iszero(sub(n)(m)));
+const divGen = f => m => n =>
+    iszero(n)(() => zero)(() =>
+        lessThan(m)(n)(() => zero)(() =>
+            succ(f(sub(m)(n))(n))
+        )()
+    )();
+
+const div = Y(divGen);
+
 function main(){
     // Core logic
     console.log(true_);
